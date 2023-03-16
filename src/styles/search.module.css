@@ -1,0 +1,74 @@
+@keyframes hover-effect {
+    from {box-shadow: none;}
+    to {
+        box-shadow: 1vh .1vh 30px var(--medi-col);
+        scale: 1.05;
+    }
+}
+
+@keyframes hover-effect-no-scale {
+    from {box-shadow: none;}
+    to {
+        box-shadow: 1vh .1vh 30px var(--medi-col);
+    }
+}
+
+.search-container {
+    background-color: var(--prim-col);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh;
+    padding-bottom: 2vh;
+    box-shadow: 1vh .1vh 30px var(--medi-col);
+}
+
+.motto {
+    margin-top: 8vh;
+    margin-bottom: 2vh;
+    font-size: 6vh;
+    color: var(--dark-col);
+    text-align: center;
+}
+
+.search {
+    display: flex;
+    width: 75%;
+}
+
+.search__bar {
+    width: 100%;
+    background-color: var(--lite-col);
+    border: .1vh solid var(--medi-col);
+    border-radius: .5vh;
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    padding: 1vh;
+    color: var(--dark-col);
+    font-weight: bolder;
+}
+
+.search__bar:focus {
+    outline: none;
+    animation-name: hover-effect-no-scale;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+
+.search__submit {
+    font-weight: bolder;
+    padding: 1vh;
+    margin-left: 1vh;
+    background-color: var(--dark-col);
+    border: none;
+    border-radius: .5vh;
+    color: var(--prim-col);
+    cursor: pointer;
+}
+
+.search__submit:hover {
+    animation-name: hover-effect;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}

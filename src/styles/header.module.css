@@ -1,0 +1,12 @@
+.header {
+    background-color: var(--dark-col);
+    color: var(--prim-col);
+    text-align: center;
+    font-size: 4vh;
+    font-weight: bold;
+    cursor: pointer;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    box-shadow: 1vh .1vh 30px var(--medi-col);
+}

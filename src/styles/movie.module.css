@@ -1,0 +1,9 @@
+.movie {
+    background-color: var(--prim-col);
+    margin: 2vh;
+    text-align: center;
+}
+
+.movie h2 {
+    color: var(--dark-col);
+}

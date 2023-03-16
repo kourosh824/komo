@@ -1,6 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
 :root {
-    --prim-back: #FFC6A5;
-    --dark-back: #E6324B;
-    --lite-back: #F2E3C6;
-    --medi-back: #A39081;
+    --prim-col: #FFC6A5;
+    --dark-col: #E6324B;
+    --lite-col: #F2E3C6;
+    --medi-col: #A39081;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
 }
