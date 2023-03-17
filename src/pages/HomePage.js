@@ -101,7 +101,7 @@ const HomePage = () => {
     );
 
     const navigate = (
-        <Navigate to="/login" />
+        <Navigate to="/" />
     );
 
     return (
