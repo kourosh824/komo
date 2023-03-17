@@ -10,7 +10,9 @@
 body {
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
+    background-color: var(--lite-col);
 }
+
 
 * {
     padding: 0px;

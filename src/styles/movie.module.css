@@ -29,8 +29,9 @@
     animation-fill-mode: forwards;
 }
 
-.movie h3 {
+.movie p {
     font-size: 2vh;
+    font-weight: bold;
     color: var(--dark-col);
     margin: .5vh;
 }

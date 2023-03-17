@@ -7,13 +7,16 @@ import Search from '../components/Search';
 import homeStyles from '../styles/home.module.css';
 
 import { isMobile } from "react-device-detect";
+import Popup from "../components/Popup";
 
 const MAX = 3;
 
 const HomePage = () => {
-    const location = useLocation();
     const [movies, setMovies] = useState([]);
     const [found, setFound] = useState(false);
+
+    const [info, setInfo] = useState([]);
+    const [show, setShow] = useState(false);
 
     const showMovies = (res) => {
         const numRows = Math.floor(res.length / MAX);
@@ -66,12 +69,13 @@ const HomePage = () => {
                 const res = jsonResponse.Search.map((movie) => {
                     return (
                         <Movie
-                        movie={movie} />
+                        movie={movie}
+                        info={setInfo}
+                        state={setShow} />
                     );
                 });
                 setMovies((isMobile) ? res : showMovies(res));
                 setFound(true);
-                console.log(movies);
             } else {
                 setFound(false);
             }
@@ -95,6 +99,7 @@ const HomePage = () => {
                     {found && movies}
                 </div>
             </div>
+            {show && <Popup info={info} show={setShow} />}
         </div>
     );
 };
