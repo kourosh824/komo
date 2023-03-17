@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
 
 import Header from "../components/Header";
 import Movie from '../components/Movie';
@@ -12,6 +13,8 @@ import Popup from "../components/Popup";
 const MAX = 3;
 
 const HomePage = () => {
+    const loggedIn = useLocation().state;
+    
     const [movies, setMovies] = useState([]);
     const [found, setFound] = useState(false);
 
@@ -82,23 +85,31 @@ const HomePage = () => {
         });
     }
     
+    const container = (
+        <div
+        className={homeStyles['home-container']}>
+            <div
+            className={homeStyles['search-container']}>
+                <Search
+                search={search} />
+            </div>
+            <div
+            className={homeStyles['row-container']}>
+                {found && movies}
+            </div>
+        </div>
+    );
+
+    const navigate = (
+        <Navigate to="/login" />
+    );
+
     return (
         <div
         className={homeStyles['home']}>
             <Header
             text="KOMO" />
-            <div
-            className={homeStyles['home-container']}>
-                <div
-                className={homeStyles['search-container']}>
-                    <Search
-                    search={search} />
-                </div>
-                <div
-                className={homeStyles['row-container']}>
-                    {found && movies}
-                </div>
-            </div>
+            {loggedIn ? container:navigate}
             {show && <Popup info={info} show={setShow} />}
         </div>
     );

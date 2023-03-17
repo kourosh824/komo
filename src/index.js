@@ -15,7 +15,7 @@ root.render(
     <BrowserRouter>
         <Routes>
             <Route
-            path="/"
+            path="/login"
             element={<LoginPage />} />
             <Route
             path="/home"

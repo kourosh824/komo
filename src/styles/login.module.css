@@ -87,7 +87,6 @@
     background-color: var(--lite-col);
     border: .1vh solid var(--medi-col);
     border-radius: .5vh;
-    text-transform: uppercase;
     font-family: 'Montserrat';
     padding: 1vh;
     margin-top: 1vh;
