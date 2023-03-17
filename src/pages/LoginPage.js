@@ -108,7 +108,7 @@ const LoginPage = () => {
                 </p>
                 <p
                 className={pageStyles['login__credits']}>
-                    made with 🖤️ by kourosh824
+                    Made with 🖤️ by kourosh824.
                 </p>
             </div>
             <div
