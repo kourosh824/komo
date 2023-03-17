@@ -1,9 +1,40 @@
+@keyframes hover-effect {
+    from {box-shadow: none;}
+    to {
+        box-shadow: 1vh .1vh 30px var(--medi-col);
+        scale: 1.05;
+    }
+}
+
+@keyframes hover-effect-no-scale {
+    from {box-shadow: none;}
+    to {
+        box-shadow: 1vh .1vh 30px var(--medi-col);
+    }
+}
+
 .movie {
     background-color: var(--prim-col);
     margin: 2vh;
     text-align: center;
+    cursor: pointer;
+    border: .1vh solid var(--dark-col);
+    border-radius: .5vh;
+    width: 20%;
 }
 
-.movie h2 {
+.movie:hover {
+    animation-name: hover-effect;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+
+.movie h3 {
+    font-size: 2vh;
     color: var(--dark-col);
+    margin: .5vh;
+}
+
+.movie img {
+    width: 100%;
 }

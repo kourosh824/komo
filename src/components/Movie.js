@@ -11,9 +11,9 @@ const Movie = ({ movie }) => {
     return (
         <div
         className={movieStyles['movie']}>
-            <h2>
+            <h3>
                 {movie.Title}
-            </h2>
+            </h3>
             <div>
                 <img
                 width="200"

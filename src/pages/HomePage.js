@@ -31,7 +31,7 @@ const HomePage = () => {
                         <div
                         className={homeStyles['row-back']}>
                             {res.slice(i * MAX, (i + 1) * MAX)}
-                        </div>    
+                        </div>
                         }
                     </div>
                 );
@@ -63,15 +63,15 @@ const HomePage = () => {
         .then(response => response.json())
         .then(jsonResponse => {
             if(jsonResponse.Response === 'True') {
-                const res = showMovies(jsonResponse.Search.map((movie) => {
+                const res = jsonResponse.Search.map((movie) => {
                     return (
                         <Movie
                         movie={movie} />
                     );
-                }));
-                setMovies(showMovies(res));
-                console.log(movies);
+                });
+                setMovies((isMobile) ? res : showMovies(res));
                 setFound(true);
+                console.log(movies);
             } else {
                 setFound(false);
             }
@@ -85,8 +85,11 @@ const HomePage = () => {
             text="KOMO" />
             <div
             className={homeStyles['home-container']}>
-                <Search
-                search={search} />
+                <div
+                className={homeStyles['search-container']}>
+                    <Search
+                    search={search} />
+                </div>
                 <div
                 className={homeStyles['row-container']}>
                     {found && movies}
