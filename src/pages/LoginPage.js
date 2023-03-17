@@ -62,42 +62,55 @@ const LoginPage = () => {
 
     // JSX code for the login form
     const renderForm = (
-        <div
-        className={pageStyles['login-form']}>
-            <form
-            onSubmit={handleSubmit}>
-                <div
-                className={pageStyles['login-form__input']}>
-                    <label>Username </label>
-                    <input
-                    type="text"
-                    name="uname"
-                    required />
-                    {renderErrorMessage("uname")}
-                </div>
-                <div
-                className={pageStyles['login-form__input']}>
-                    <label>Password </label>
-                    <input
-                    type="password"
-                    name="pass"
-                    required />
-                    {renderErrorMessage("pass")}
-                </div>
-                <div
-                className={pageStyles['login-form__submit']}>
-                    <input
-                    type="submit" />
-                </div>
-            </form>
-        </div>
+        <form
+        className={pageStyles['login-form']}
+        onSubmit={handleSubmit}>
+            <div
+            className={pageStyles['login-form__input']}>
+                <label>Username </label>
+                <input
+                type="text"
+                name="uname"
+                required />
+                {renderErrorMessage("uname")}
+            </div>
+            <div
+            className={pageStyles['login-form__input']}>
+                <label>Password </label>
+                <input
+                type="password"
+                name="pass"
+                required />
+                {renderErrorMessage("pass")}
+            </div>
+            <div
+            className={pageStyles['login-form__submit']}>
+                <input
+                type="submit" />
+            </div>
+        </form>
     );
 
     const navigate = useNavigate();
 
     return (
         <div
-        className={pageStyles['login']}>login
+        className={pageStyles['login']}>
+            <div
+            className={pageStyles['login__back']}>
+                <p
+                className={pageStyles['login__logo']}>
+                    🎥
+                </p>
+                <p
+                className={pageStyles['login__logo-title']}>
+                    KOMO
+                </p>
+                <p
+                className={pageStyles['login__credits']}>
+                    made with 🖤️ by kourosh824
+                </p>
+            </div>
             <div
             className={pageStyles['login__container']}>
                 <div

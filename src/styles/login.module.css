@@ -1,0 +1,120 @@
+@keyframes hover-effect {
+    from {box-shadow: none;}
+    to {
+        box-shadow: 1vh .1vh 30px var(--medi-col);
+        scale: 1.05;
+    }
+}
+
+@keyframes hover-effect-no-scale {
+    from {box-shadow: none;}
+    to {
+        box-shadow: 1vh .1vh 30px var(--medi-col);
+    }
+}
+
+.login {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    height: 60%;
+    display: flex;
+    border-radius: 3vh;
+    box-shadow: 1vh .1vh 30px var(--medi-col);
+}
+
+.login__back, .login__container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.login__back {
+    background-color: var(--dark-col);
+    color: var(--prim-col);
+    border-radius: 3vh 0vh 0vh 3vh;
+    cursor: pointer;
+}
+
+.login__container {
+    background-color: var(--prim-col);
+    color: var(--dark-col);
+    border-radius: 0vh 3vh 3vh 0vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.login__logo {
+    font-size: 15vh;
+    margin-top: 5vh;
+}
+
+.login__logo-title {
+    font-size: 6vh;
+    font-weight: bold;
+}
+
+.login__credits {
+    text-transform: lowercase;
+    text-align: center;
+    margin-bottom: 2vh;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login__title {
+    font-weight: bold;
+    font-size: 8vh;
+}
+
+.login-form__input {
+    text-align: center;
+    margin: 3vh;
+    font-weight: bold;
+}
+
+.login-form__input input {
+    background-color: var(--lite-col);
+    border: .1vh solid var(--medi-col);
+    border-radius: .5vh;
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    padding: 1vh;
+    margin-top: 1vh;
+    color: var(--dark-col);
+    font-weight: bolder;
+}
+
+.login-form__input input:focus {
+    outline: none;
+    animation-name: hover-effect-no-scale;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+
+.login-form__submit input {
+    font-weight: bolder;
+    padding: 1vh;
+    margin-left: 1vh;
+    background-color: var(--dark-col);
+    border: none;
+    border-radius: .5vh;
+    color: var(--prim-col);
+    cursor: pointer;
+}
+
+.login-form__submit input:hover {
+    animation-name: hover-effect;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
