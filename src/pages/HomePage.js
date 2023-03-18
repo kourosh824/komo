@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { useLocation } from 'react-router-dom';
-import { Navigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from '../firebase';
+import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
 
 import Header from "../components/Header";
 import Movie from '../components/Movie';
@@ -13,14 +15,35 @@ import Popup from "../components/Popup";
 const MAX = 3;
 
 const HomePage = () => {
-    const loggedIn = useLocation().state;
-    
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if(user) {
+                const uid = user.uid;
+                console.log('uid', uid);
+            } else {
+                console.log('not signed in');
+                navigate('/login');
+            };
+        });
+    });
+
     const [movies, setMovies] = useState([]);
     const [found, setFound] = useState(false);
-
+    
     const [info, setInfo] = useState([]);
     const [show, setShow] = useState(false);
-
+    
+    const handleLogout = () => {
+        signOut(auth).then(() => {
+            navigate('/login');
+            console.log('Signed out successfully');
+        }).catch((error) => {
+            console.log('Something went wrong');
+        })
+    };
+    
     const showMovies = (res) => {
         const numRows = Math.floor(res.length / MAX);
         const rowRem = res.length % MAX;
@@ -100,16 +123,16 @@ const HomePage = () => {
         </div>
     );
 
-    const navigate = (
-        <Navigate to="/" />
-    );
-
     return (
         <div
         className={homeStyles['home']}>
             <Header
             text="KOMO" />
-            {loggedIn ? container:navigate}
+            {container}
+            <button
+            onClick={handleLogout}>
+                Log out
+            </button>
             {show && <Popup info={info} show={setShow} />}
         </div>
     );

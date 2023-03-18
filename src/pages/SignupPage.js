@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
 import { NavLink, useNavigate } from 'react-router-dom';
 import pageStyles from '../styles/login.module.css';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 
-const LoginPage = () => {
+const SignupPage = () => {
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const onLogin = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
+        await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                navigate("/home");
                 console.log(user);
+                navigate('/login');
             })
             .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
+                const errorMessage = error.Message;
                 console.log(errorCode, errorMessage);
             });
     };
@@ -31,31 +31,32 @@ const LoginPage = () => {
         className={pageStyles['login-form']}>
             <div
             className={pageStyles['login-form__input']}>
-                <label htmlFor="email-address">Email </label>
+                <label>Email </label>
                 <input
-                id="email-address"
-                name="email"
                 type="email"
+                label="Email Address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder="Email Address"
-                onChange={(e) => setEmail(e.target.value)} />
+                placeholder="Email Address" />
             </div>
             <div
             className={pageStyles['login-form__input']}>
-                <label htmlFor="password">Password </label>
+                <label>Password </label>
                 <input
-                id="password"
                 type="password"
-                name="password"
+                label="Create Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)} />
+                placeholder="Password" />
             </div>
             <div
             className={pageStyles['login-form__submit']}>
                 <button
-                onClick={onLogin}>
-                    Login
+                type="submit"
+                onClick={onSubmit}>
+                    Sign Up
                 </button>
             </div>
         </form>
@@ -82,12 +83,12 @@ const LoginPage = () => {
             <div
             className={pageStyles['login__container']}>
                 <div
-                className={pageStyles['login__title']}>Sign In</div>
+                className={pageStyles['login__title']}>Sign Up</div>
                 {renderForm}
                 <p>
-                    No account yet? {' '}
-                    <NavLink to="/signup">
-                        Sign Up
+                    Already have an account?{' '}
+                    <NavLink to="/login">
+                        Sign In
                     </NavLink>
                 </p>
             </div>
@@ -95,4 +96,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default SignupPage;
