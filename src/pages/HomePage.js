@@ -7,6 +7,7 @@ import { signOut } from "firebase/auth";
 import Header from "../components/Header";
 import Movie from '../components/Movie';
 import Search from '../components/Search';
+import Sidebar from "../components/Sidebar";
 import homeStyles from '../styles/home.module.css';
 
 import { isMobile } from "react-device-detect";
@@ -34,15 +35,8 @@ const HomePage = () => {
     
     const [info, setInfo] = useState([]);
     const [show, setShow] = useState(false);
-    
-    const handleLogout = () => {
-        signOut(auth).then(() => {
-            navigate('/signin');
-            console.log('Signed out successfully');
-        }).catch((error) => {
-            console.log('Something went wrong');
-        })
-    };
+
+    const [showSide, setShowSide] = useState(false);
     
     const showMovies = (res) => {
         const numRows = Math.floor(res.length / MAX);
@@ -127,12 +121,12 @@ const HomePage = () => {
         <div
         className={homeStyles['home']}>
             <Header
-            text="KOMO" />
+            title="KOMO"
+            setShow={setShowSide} />
+            {showSide && 
+            <Sidebar
+            setShow={setShowSide} />}
             {container}
-            <button
-            onClick={handleLogout}>
-                Log out
-            </button>
             {show && <Popup info={info} show={setShow} />}
         </div>
     );

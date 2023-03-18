@@ -1,0 +1,41 @@
+@keyframes font-scale {
+    from {font-size: 3vh;}
+    to {font-size: 3.2vh;}
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 25%;
+    background-color: var(--dark-col);
+    box-shadow: 0px 2vh 5vh gray;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.sidebar__item {
+    text-align: center;
+    margin: 2vh;
+    color: var(--prim-col);
+    font-weight: bolder;
+    font-size: 3vh;
+    cursor: pointer;
+}
+
+.sidebar__item:hover {
+    animation-name: font-scale;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+
+.sidebar__line {
+    height: .5vh;
+    background-color: var(--lite-col);
+    border: none;
+    width: 80%;
+}

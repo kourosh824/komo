@@ -1,8 +1,12 @@
+@keyframes hover-effect {
+    to {
+        scale: 1.1;
+    }
+}
+
 .header {
     background-color: var(--dark-col);
     color: var(--prim-col);
-    text-align: center;
-    font-size: 4vh;
     font-weight: bold;
     cursor: pointer;
     position: fixed;
@@ -10,4 +14,26 @@
     top: 0;
     box-shadow: 1vh .1vh 30px var(--medi-col);
     z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__title {
+    text-align: center;
+    font-size: 4vh;
+    margin: 1vh;
+    text-align: center;
+    flex-grow: 2;
+}
+
+.header__menu {
+    font-size: 6vh;
+    margin-left: 2vh;
+}
+
+.header__menu:hover {
+    animation-name: hover-effect;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
 }
