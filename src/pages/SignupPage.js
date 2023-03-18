@@ -17,7 +17,7 @@ const SignupPage = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log(user);
-                navigate('/login');
+                navigate('/signin');
             })
             .catch((error) => {
                 const errorCode = error.code;
