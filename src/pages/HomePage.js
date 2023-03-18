@@ -24,7 +24,7 @@ const HomePage = () => {
                 console.log('uid', uid);
             } else {
                 console.log('not signed in');
-                navigate('/login');
+                navigate('/signin');
             };
         });
     });
@@ -37,7 +37,7 @@ const HomePage = () => {
     
     const handleLogout = () => {
         signOut(auth).then(() => {
-            navigate('/login');
+            navigate('/signin');
             console.log('Signed out successfully');
         }).catch((error) => {
             console.log('Something went wrong');

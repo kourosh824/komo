@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import pageStyles from '../styles/login.module.css';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
+
+import pageStyles from '../styles/signPage.module.css';
 
 const SignupPage = () => {
     const navigate = useNavigate();
@@ -28,9 +29,9 @@ const SignupPage = () => {
     // JSX code for the login form
     const renderForm = (
         <form
-        className={pageStyles['login-form']}>
+        className={pageStyles['sign-form']}>
             <div
-            className={pageStyles['login-form__input']}>
+            className={pageStyles['sign-form__input']}>
                 <label>Email </label>
                 <input
                 type="email"
@@ -41,7 +42,7 @@ const SignupPage = () => {
                 placeholder="Email Address" />
             </div>
             <div
-            className={pageStyles['login-form__input']}>
+            className={pageStyles['sign-form__input']}>
                 <label>Password </label>
                 <input
                 type="password"
@@ -52,7 +53,7 @@ const SignupPage = () => {
                 placeholder="Password" />
             </div>
             <div
-            className={pageStyles['login-form__submit']}>
+            className={pageStyles['sign-form__submit']}>
                 <button
                 type="submit"
                 onClick={onSubmit}>
@@ -64,30 +65,33 @@ const SignupPage = () => {
 
     return (
         <div
-        className={pageStyles['login']}>
+        className={pageStyles['sign']}>
             <div
-            className={pageStyles['login__back']}>
+            className={pageStyles['sign__back']}>
                 <p
-                className={pageStyles['login__logo']}>
+                className={pageStyles['sign__logo']}>
                     🎥
                 </p>
                 <p
-                className={pageStyles['login__logo-title']}>
+                className={pageStyles['sign__logo-title']}>
                     KOMO
                 </p>
                 <p
-                className={pageStyles['login__credits']}>
+                className={pageStyles['sign__credits']}>
                     Made with 🖤️ by kourosh824.
                 </p>
             </div>
             <div
-            className={pageStyles['login__container']}>
+            className={pageStyles['sign__container']}>
                 <div
-                className={pageStyles['login__title']}>Sign Up</div>
+                className={pageStyles['sign__title']}>Sign Up</div>
                 {renderForm}
-                <p>
+                <p
+                className={pageStyles['sign__details']}>
                     Already have an account?{' '}
-                    <NavLink to="/login">
+                    <NavLink
+                    className={pageStyles['sign__text']}
+                    to="/signin">
                         Sign In
                     </NavLink>
                 </p>

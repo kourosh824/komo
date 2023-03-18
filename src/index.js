@@ -5,7 +5,7 @@ import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
+import Signin from './pages/SigninPage';
 import SignupPage from './pages/SignupPage';
 
 const root = ReactDOM.createRoot(
@@ -16,8 +16,8 @@ root.render(
     <BrowserRouter>
         <Routes>
             <Route
-            path="/login"
-            element={<LoginPage />} />
+            path="/signin"
+            element={<Signin />} />
             <Route
             path="/home"
             element={<HomePage />} />

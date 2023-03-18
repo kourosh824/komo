@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import { NavLink, useNavigate } from 'react-router-dom';
-import pageStyles from '../styles/login.module.css';
 
-const LoginPage = () => {
+import pageStyles from '../styles/signPage.module.css';
+
+const SigninPage = () => {
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
@@ -28,9 +29,9 @@ const LoginPage = () => {
     // JSX code for the login form
     const renderForm = (
         <form
-        className={pageStyles['login-form']}>
+        className={pageStyles['sign-form']}>
             <div
-            className={pageStyles['login-form__input']}>
+            className={pageStyles['sign-form__input']}>
                 <label htmlFor="email-address">Email </label>
                 <input
                 id="email-address"
@@ -41,7 +42,7 @@ const LoginPage = () => {
                 onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div
-            className={pageStyles['login-form__input']}>
+            className={pageStyles['sign-form__input']}>
                 <label htmlFor="password">Password </label>
                 <input
                 id="password"
@@ -52,10 +53,10 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)} />
             </div>
             <div
-            className={pageStyles['login-form__submit']}>
+            className={pageStyles['sign-form__submit']}>
                 <button
                 onClick={onLogin}>
-                    Login
+                    Sign in
                 </button>
             </div>
         </form>
@@ -63,30 +64,33 @@ const LoginPage = () => {
 
     return (
         <div
-        className={pageStyles['login']}>
+        className={pageStyles['sign']}>
             <div
-            className={pageStyles['login__back']}>
+            className={pageStyles['sign__back']}>
                 <p
-                className={pageStyles['login__logo']}>
+                className={pageStyles['sign__logo']}>
                     🎥
                 </p>
                 <p
-                className={pageStyles['login__logo-title']}>
+                className={pageStyles['sign__logo-title']}>
                     KOMO
                 </p>
                 <p
-                className={pageStyles['login__credits']}>
+                className={pageStyles['sign__credits']}>
                     Made with 🖤️ by kourosh824.
                 </p>
             </div>
             <div
-            className={pageStyles['login__container']}>
+            className={pageStyles['sign__container']}>
                 <div
-                className={pageStyles['login__title']}>Sign In</div>
+                className={pageStyles['sign__title']}>Sign In</div>
                 {renderForm}
-                <p>
+                <p
+                className={pageStyles['sign__details']}>
                     No account yet? {' '}
-                    <NavLink to="/signup">
+                    <NavLink
+                    className={pageStyles['sign__text']}
+                    to="/signup">
                         Sign Up
                     </NavLink>
                 </p>
@@ -95,4 +99,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default SigninPage;
