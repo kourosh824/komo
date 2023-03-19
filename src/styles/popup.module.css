@@ -65,7 +65,7 @@
     text-align: justify;
 }
 
-.popup__close {
+.popup__btn {
     font-weight: bolder;
     padding: 1vh;
     margin-left: 1vh;
@@ -77,13 +77,19 @@
     margin-bottom: 2vh;
 }
 
-.popup__close:hover {
+.popup__btn:hover {
     animation-name: hover-effect;
     animation-duration: .5s;
     animation-fill-mode: forwards;
 }
 
 .popup__info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup__bottom {
+    width: 50%;
     display: flex;
     justify-content: space-between;
 }

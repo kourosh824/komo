@@ -1,6 +1,5 @@
 import React from 'react';
 import movieStyles from '../styles/movie.module.css';
-import Popup from './Popup';
 
 const DEFAULT_PLACEHOLDER_IMAGE = 
     "https://lands-tube.it.landsd.gov.hk/AVideo/view/img/notfound_portrait.jpg";
@@ -14,7 +13,8 @@ const Movie = ({ movie, info, state }) => {
         Metascore: '',
         Plot: '',
         Poster: '',
-        imdbRating: ''
+        imdbRating: '',
+        ID: movie.imdbID
     };
 
     fetch(`https://www.omdbapi.com/?i=${movie.imdbID}&apikey=5bba07e8`)

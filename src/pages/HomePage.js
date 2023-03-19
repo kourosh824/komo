@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '../firebase';
 import { useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
 
 import Header from "../components/Header";
 import Movie from '../components/Movie';
@@ -22,7 +21,6 @@ const HomePage = () => {
         onAuthStateChanged(auth, (user) => {
             if(user) {
                 const uid = user.uid;
-                console.log('uid', uid);
             } else {
                 console.log('not signed in');
                 navigate('/signin');
@@ -127,7 +125,11 @@ const HomePage = () => {
             <Sidebar
             setShow={setShowSide} />}
             {container}
-            {show && <Popup info={info} show={setShow} />}
+            {show &&
+            <Popup
+            userId={auth.currentUser.uid}
+            info={info}
+            show={setShow} />}
         </div>
     );
 };

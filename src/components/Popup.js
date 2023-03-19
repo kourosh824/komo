@@ -1,9 +1,45 @@
 import React from 'react';
 import popupStyles from '../styles/popup.module.css';
+import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../firebase';
 
-const Popup = ({ info, show }) => {
+const Popup = ({ userId, info, show }) => {
     const closeBtn = (e) => {
         show(false);
+    };
+
+    const wishListBtn = async (e) => {
+        e.preventDefault();
+
+        try {
+            const ref = await addDoc(collection(db, `user-${userId}-movies`), {
+                ...info
+            });
+            console.log("Document written with ID: ", ref.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+    };
+
+    const readBtn = async (e) => {
+        await getDocs(collection(db, `user-${userId}-movies`))
+            .then((querySnapshot) => {
+                const newData = querySnapshot.docs
+                    .map((doc) => console.log(doc.data()));
+            });
+    };
+
+    const deleteBtn = async (e) => {
+        await getDocs(collection(db, `user-${userId}-movies`))
+        .then((querySnapshot) => {
+            querySnapshot.docs.forEach((movie) => {
+                if(movie.data().ID === info.ID) {
+                    console.log('DELETING');
+                    const docRef = doc(db, `user-${userId}-movies`, movie.id);
+                    deleteDoc(docRef);
+                }
+            });
+        });
     };
 
     return (
@@ -70,11 +106,29 @@ const Popup = ({ info, show }) => {
                 className={popupStyles['popup__plot']}>
                     {info.Plot}
                 </p>
-                <button
-                className={popupStyles['popup__close']}
-                onClick={closeBtn}>
-                    CLOSE
-                </button>
+                <div
+                className={popupStyles['popup__bottom']}>
+                    <button
+                    className={popupStyles['popup__btn']}
+                    onClick={closeBtn}>
+                        CLOSE
+                    </button>
+                    <button
+                    className={popupStyles['popup__btn']}
+                    onClick={wishListBtn}>
+                        WISH LIST
+                    </button>
+                    <button
+                    className={popupStyles['popup__btn']}
+                    onClick={readBtn}>
+                        READ
+                    </button>
+                    <button
+                    className={popupStyles['popup__btn']}
+                    onClick={deleteBtn}>
+                        DELETE
+                    </button>
+                </div>
             </div>
         </div>
     );
