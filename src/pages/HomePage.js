@@ -20,12 +20,11 @@ const HomePage = () => {
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
-            if(user) {
-                const uid = user.uid;
-            } else {
-                console.log('not signed in');
+            if(!user) {
+                // if not signed in then navigate to
+                // the sign in page
                 navigate('/signin');
-            };
+            }
         });
     });
     // where we store our movies data
