@@ -51,7 +51,11 @@ const Sidebar = ({ setVisible }) => {
             </div>
             <div
             className={sidebarStyles['sidebar__item']}>
-                Settings
+                <NavLink
+                className={sidebarStyles['siderbar__item-link']}
+                to="/settings">
+                    Settings
+                </NavLink>
             </div>
             <div
             className={sidebarStyles['sidebar__item']}>

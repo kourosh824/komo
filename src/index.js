@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage';
 import SigninPage from './pages/SigninPage';
 import SignupPage from './pages/SignupPage';
 import WatchListPage from './pages/WatchListPage';
+import SettingsPage from './pages/SettingsPage';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root')
@@ -28,6 +29,9 @@ root.render(
             <Route
             path="/home"
             element={<HomePage />} />
+            <Route
+            path="/settings"
+            element={<SettingsPage />} />
             <Route
             path="/signup"
             element={<SignupPage />} />

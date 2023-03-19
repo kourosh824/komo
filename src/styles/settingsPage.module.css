@@ -1,0 +1,68 @@
+@keyframes hover-effect {
+    from {box-shadow: none;}
+    to {
+        box-shadow: 1vh .1vh 30px var(--medi-col);
+        scale: 1.05;
+    }
+}
+
+@keyframes hover-effect-no-scale {
+    from {box-shadow: none;}
+    to {
+        box-shadow: 1vh .1vh 30px var(--medi-col);
+    }
+}
+
+@keyframes font-scale {
+    from {font-size: 2vh;}
+    to {font-size: 2.2vh;}
+}
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 8vh;
+}
+
+.settings-form__input {
+    text-align: center;
+    margin: 3vh;
+    font-weight: bold;
+}
+
+.settings-form__input input {
+    background-color: var(--lite-col);
+    border: .1vh solid var(--medi-col);
+    border-radius: .5vh;
+    font-family: 'Montserrat';
+    padding: 1vh;
+    margin-top: 1vh;
+    color: var(--dark-col);
+    font-weight: bolder;
+}
+
+.settings-form__input input:focus {
+    outline: none;
+    animation-name: hover-effect-no-scale;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+
+.settings-form__submit button {
+    text-transform: uppercase;
+    font-weight: bolder;
+    padding: 1vh;
+    margin-left: 1vh;
+    background-color: var(--dark-col);
+    border: none;
+    border-radius: .5vh;
+    color: var(--prim-col);
+    cursor: pointer;
+}
+
+.settings-form__submit button:hover {
+    animation-name: hover-effect;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
