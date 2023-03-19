@@ -5,8 +5,9 @@ import './index.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import HomePage from './pages/HomePage';
-import Signin from './pages/SigninPage';
+import SigninPage from './pages/SigninPage';
 import SignupPage from './pages/SignupPage';
+import WishListPage from './pages/WishListPage';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root')
@@ -19,8 +20,11 @@ root.render(
             path="/"
             element={<Navigate to="/signin" />} />
             <Route
+            path="/wishlist"
+            element={<WishListPage />} />
+            <Route
             path="/signin"
-            element={<Signin />} />
+            element={<SigninPage />} />
             <Route
             path="/home"
             element={<HomePage />} />

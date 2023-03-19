@@ -33,6 +33,11 @@
     animation-fill-mode: forwards;
 }
 
+.siderbar__item-link {
+    text-decoration: none;
+    color: var(--prim-col);
+}
+
 .sidebar__line {
     height: .5vh;
     background-color: var(--lite-col);

@@ -1,7 +1,7 @@
 import React from 'react';
 import sidebarStyles from '../styles/sidebar.module.css';
 import { signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { auth } from '../firebase'
 
 const Sidebar = ({ setShow }) => {
@@ -34,7 +34,15 @@ const Sidebar = ({ setShow }) => {
             <hr className={sidebarStyles['sidebar__line']} />
             <div
             className={sidebarStyles['sidebar__item']}>
-                Account
+                Settings
+            </div>
+            <div
+            className={sidebarStyles['sidebar__item']}>
+                <NavLink
+                className={sidebarStyles['siderbar__item-link']}
+                to="/wishlist">
+                    Wish List
+                </NavLink>
             </div>
             <div
             className={sidebarStyles['sidebar__item']}
