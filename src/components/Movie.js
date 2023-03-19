@@ -4,7 +4,7 @@ import movieStyles from '../styles/movie.module.css';
 const DEFAULT_PLACEHOLDER_IMAGE = 
     "https://lands-tube.it.landsd.gov.hk/AVideo/view/img/notfound_portrait.jpg";
 
-const Movie = ({ movie, info, state }) => {
+const Movie = ({ movie, setInfo, setPopup }) => {
     const det = {
         Title: '',
         Year: '',
@@ -34,8 +34,8 @@ const Movie = ({ movie, info, state }) => {
         movie.Poster === "N/A" ? DEFAULT_PLACEHOLDER_IMAGE : movie.Poster;
     
     const movieClicked = (e) => {
-        info(det);
-        state(true);
+        setInfo(det);
+        setPopup(true);
     };
 
     return (
