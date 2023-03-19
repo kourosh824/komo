@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import { getDocs, collection } from 'firebase/firestore';
 import { db, auth } from '../firebase';
 
@@ -7,27 +8,34 @@ import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import Movie from '../components/Movie';
 import getMoviesData from '../hooks/getMoviesData';
+
 import watchStyles from '../styles/watchListPage.module.css';
 
 const WishListPage = () => {
-    const userId = auth.currentUser.uid;
-
+    const userId = auth.currentUser.uid; // the user id
+    // where we store our movies data
     const [movies, setMovies] = useState([]);
+    // here we store movie data to be showed in the popup
+    // window
+    const [movieInfo, setMovieInfo] = useState([]);
+    // decides whether the popup should be visible or not
+    const [showPopup, setShowPopup] = useState(false);
+    // decides whether the sidebar should be visible or not
     const [showSide, setShowSide] = useState(false);
-
-    const [show, setShow] = useState(false);
-    const [info, setInfo] = useState([]);
-    
+    // called in the start to get all the movies from the watch list
     const fetchMovies = async () => {
+        // get the movies from Cloud Firestore
         await getDocs(collection(db, `user-${userId}-movies`))
         .then((querySnapshot) => {
             const newData = querySnapshot.docs
             .map((doc) => {
-                console.log(doc.data());
-                return <Movie
-                movie={doc.data()}
-                info={setInfo}
-                state={setShow} />
+                // return each of them as a Movie component
+                return (
+                    <Movie
+                    movie={doc.data()}
+                    setInfo={setMovieInfo}
+                    setPopup={setShowPopup} />
+                );
             });
             setMovies(newData);
         });
@@ -44,19 +52,21 @@ const WishListPage = () => {
             setShow={setShowSide} />
             {showSide && 
             <Sidebar
-            setShow={setShowSide} />}
+            setVisible={setShowSide} />}
             <div
-            className={watchStyles['wish-container']}>
+            className={watchStyles['watch-container']}>
                 <div
                 className={watchStyles['row-container']}>
                     {getMoviesData(movies)}
                 </div>
             </div>
-            {show &&
+            {showPopup &&
             <Popup
             userId={auth.currentUser.uid}
-            info={info}
-            show={setShow} />}
+            info={movieInfo}
+            setVisible={setShowPopup}
+            reFetch={fetchMovies}
+            showRemove />}
         </div>
     );
 }

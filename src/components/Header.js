@@ -1,12 +1,17 @@
 import React from 'react';
+
 import headerStyles from '../styles/header.module.css';
-
-const Header = ( { title, setShow } ) => {
+/**
+ * 
+ * @param title The text that will be showed on header
+ * @param setSideVisible If the Sidebar is visible 
+ * @returns 
+ */
+const Header = ( { title, setSideVisible } ) => {
+    // once the menu button is clicked show the sidebar
     const showSidebar = (e) => {
-        setShow(true);
-        console.log('hey');
+        setSideVisible(true);
     };
-
     return (
         <header
         className={headerStyles['header']}>

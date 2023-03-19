@@ -1,23 +1,32 @@
 import React from 'react';
-import sidebarStyles from '../styles/sidebar.module.css';
+
 import { signOut } from 'firebase/auth';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { auth } from '../firebase'
 
-const Sidebar = ({ setShow }) => {
-    const navigate = useNavigate();
+import sidebarStyles from '../styles/sidebar.module.css';
 
-    const handleLogout = () => {
+/**
+ * 
+ * @param setVisible Whether the Sidebar is visible or not 
+ * @returns 
+ */
+const Sidebar = ({ setVisible }) => {
+    const navigate = useNavigate();
+    // if the user decides to sign out
+    const handleSignout = () => {
         signOut(auth).then(() => {
             navigate('/signin');
-            console.log('Signed out successfully');
+            
         }).catch((error) => {
-            console.log('Something went wrong');
+            /**
+             * TODO: Add some sort of error popup here.
+             */
         })
     };
-
+    // if the user wishes to close the Sidebar
     const hideSidebar = (e) => {
-        setShow(false);
+        setVisible(false);
     };
 
     return (
@@ -48,13 +57,13 @@ const Sidebar = ({ setShow }) => {
             className={sidebarStyles['sidebar__item']}>
                 <NavLink
                 className={sidebarStyles['siderbar__item-link']}
-                to="/wishlist">
+                to="/watchlist">
                     Watch List
                 </NavLink>
             </div>
             <div
             className={sidebarStyles['sidebar__item']}
-            onClick={handleLogout}>
+            onClick={handleSignout}>
                 Sign out
             </div>
         </div>

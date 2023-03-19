@@ -40,7 +40,7 @@ const HomePage = () => {
     // decides whether the sidebar should be visible or not
     const [showSide, setShowSide] = useState(false);
     // called to search for movies the user is asking for
-    const search = (searchValue) => {
+    const searchMovie = (searchValue) => {
         // here you can put your own OMDb API key
         fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=5bba07e8`)
         .then(response => response.json())
@@ -56,7 +56,7 @@ const HomePage = () => {
                     );
                 });
                 // using the getMoviesData hook, show the movies
-                // (in rows if it is not a mobile)
+                // (in rows if it is not a mobile device)
                 setMovies((isMobile) ? res : getMoviesData(res));
                 setMovieFound(true);
             } else {
@@ -70,16 +70,16 @@ const HomePage = () => {
         className={homeStyles['home']}>
             <Header
             title="KOMO"
-            setShow={setShowSide} />
+            setSideVisible={setShowSide} />
             {showSide && 
             <Sidebar
-            setShow={setShowSide} />}
+            setVisible={setShowSide} />}
             <div
             className={homeStyles['home-container']}>
                 <div
                 className={homeStyles['search-container']}>
                     <Search
-                    search={search} />
+                    search={searchMovie} />
                 </div>
                 <div
                 className={homeStyles['row-container']}>
@@ -90,7 +90,7 @@ const HomePage = () => {
             <Popup
             userId={auth.currentUser.uid}
             info={movieInfo}
-            show={setShowPopup} />}
+            setVisible={setShowPopup} />}
         </div>
     );
 };

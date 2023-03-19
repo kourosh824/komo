@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
+
 import searchStyles from '../styles/search.module.css';
-
-const Search = (props) => {
+/**
+ * 
+ * @param search The function in charge of searching and showing movies
+ * @returns 
+ */
+const Search = ({ search }) => {
+    // the value in the input form
     const [searchValue, setSearchValue] = useState('');
-
+    // when the input is changed
     const handleSearchInputChanges = (e) => {
         setSearchValue(e.target.value);
     };
-
+    // after the search set the input to null
     const resetInputField = () => {
         setSearchValue('');
     };
-
+    // call the search function
     const callSearchFunction = (e) => {
         e.preventDefault();
-        props.search(searchValue);
+        search(searchValue);
         resetInputField();
     };
 
@@ -23,7 +29,7 @@ const Search = (props) => {
         className={searchStyles['search-container']}>
             <h3
             className={searchStyles['motto']}>
-                Gimme a name :)
+                {'Just think of a movie :)'}
             </h3>
             <form
             className={searchStyles['search']}>

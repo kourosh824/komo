@@ -1,45 +1,68 @@
 import React from 'react';
-import popupStyles from '../styles/popup.module.css';
+
 import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase';
 
-const Popup = ({ userId, info, show }) => {
+import popupStyles from '../styles/popup.module.css';
+/**
+ * 
+ * @param userId The user ID without importing auth from firebase
+ * @param info Detailed information of the movie
+ * @param setVisible Whether the Popup should be visible
+ * @param showRemove If the remove button is visible (only from WatchListPage.js)
+ * @returns 
+ */
+const Popup = ({ userId, info, setVisible, showRemove, reFetch }) => {
+    // once the close button is finished hide the popup
     const closeBtn = (e) => {
-        show(false);
+        setVisible(false);
     };
-
-    const wishListBtn = async (e) => {
-        e.preventDefault();
-
-        try {
-            const ref = await addDoc(collection(db, `user-${userId}-movies`), {
-                ...info
-            });
-            console.log("Document written with ID: ", ref.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
-    };
-
-    const readBtn = async (e) => {
-        await getDocs(collection(db, `user-${userId}-movies`))
-            .then((querySnapshot) => {
-                const newData = querySnapshot.docs
-                    .map((doc) => console.log(doc.data()));
-            });
-    };
-
-    const deleteBtn = async (e) => {
+    // once the watch list button is clicked
+    const watchListBtn = async (e) => {
+        e.preventDefault(); // the default action of the event will be canceled
+        let watchListed = false;
+        // first check if the movie is already watch listed
         await getDocs(collection(db, `user-${userId}-movies`))
         .then((querySnapshot) => {
             querySnapshot.docs.forEach((movie) => {
-                if(movie.data().ID === info.ID) {
-                    console.log('DELETING');
+                // if there is a movie with
+                if(movie.data().imdbID === info.imdbID) {
+                    watchListed = true;
+                }
+            });
+        });
+        // if not watch listed then
+        if(!watchListed) {
+            try {
+                // add it to the Cloud Firestore
+                await addDoc(collection(db, `user-${userId}-movies`), {
+                    ...info
+                });
+            } catch (e) {
+                /**
+                 * TODO: Show some sort of error message
+                 */
+            }
+        }
+        // close the popup once it has been watch listed
+        closeBtn();
+    };
+    // if the delete button is clicked
+    const removeBtn = async (e) => {
+        // find the data in Cloud Firestore
+        await getDocs(collection(db, `user-${userId}-movies`))
+        .then((querySnapshot) => {
+            querySnapshot.docs.forEach((movie) => {
+                // if it is the same movie we are talking about then delete it
+                if(movie.data().imdbID === info.imdbID) {
                     const docRef = doc(db, `user-${userId}-movies`, movie.id);
                     deleteDoc(docRef);
                 }
             });
         });
+        // close the popup once it has been removed from the watch list
+        closeBtn();
+        reFetch();
     };
 
     return (
@@ -113,21 +136,18 @@ const Popup = ({ userId, info, show }) => {
                     onClick={closeBtn}>
                         CLOSE
                     </button>
+                    {!showRemove &&
                     <button
                     className={popupStyles['popup__btn']}
-                    onClick={wishListBtn}>
-                        WISH LIST
-                    </button>
+                    onClick={watchListBtn}>
+                        WATCH LIST
+                    </button>}
+                    {showRemove && 
                     <button
                     className={popupStyles['popup__btn']}
-                    onClick={readBtn}>
-                        READ
-                    </button>
-                    <button
-                    className={popupStyles['popup__btn']}
-                    onClick={deleteBtn}>
-                        DELETE
-                    </button>
+                    onClick={removeBtn}>
+                        REMOVE
+                    </button>}
                 </div>
             </div>
         </div>
