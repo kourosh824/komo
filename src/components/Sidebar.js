@@ -29,9 +29,17 @@ const Sidebar = ({ setShow }) => {
             ${sidebarStyles['sidebar__back']}
             `}
             onClick={hideSidebar}>
-                Back
+                Close
             </div>
             <hr className={sidebarStyles['sidebar__line']} />
+            <div
+            className={sidebarStyles['sidebar__item']}>
+                <NavLink
+                className={sidebarStyles['siderbar__item-link']}
+                to="/home">
+                    Home
+                </NavLink>
+            </div>
             <div
             className={sidebarStyles['sidebar__item']}>
                 Settings
@@ -41,7 +49,7 @@ const Sidebar = ({ setShow }) => {
                 <NavLink
                 className={sidebarStyles['siderbar__item-link']}
                 to="/wishlist">
-                    Wish List
+                    Watch List
                 </NavLink>
             </div>
             <div

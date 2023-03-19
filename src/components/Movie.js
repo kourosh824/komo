@@ -14,7 +14,7 @@ const Movie = ({ movie, info, state }) => {
         Plot: '',
         Poster: '',
         imdbRating: '',
-        ID: movie.imdbID
+        imdbID: movie.imdbID
     };
 
     fetch(`https://www.omdbapi.com/?i=${movie.imdbID}&apikey=5bba07e8`)
