@@ -49,7 +49,7 @@ const WishListPage = () => {
         <div>
             <Header
             title="KOMO"
-            setShow={setShowSide} />
+            setSideVisible={setShowSide} />
             {showSide && 
             <Sidebar
             setVisible={setShowSide} />}
